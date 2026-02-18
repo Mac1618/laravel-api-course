@@ -1,0 +1,177 @@
+Laravel REST API
+
+1. Design Principles
+	- Master the foundation concept of building clean, scalable APIs with Laravel. 
+	- This guide breaks down REST architecture into practical, actionable principles for real-world development.	
+
+REST	- Representational State Transfer
+
+Core Principles
+	- Statelessness				- No session state stored on server
+	- Client-Server Separation		- Backend and Frontend are independent
+	- Uniform Interface			- Consistent, Predictable endpoints
+	- Cacheability				- Responses define caching rules
+	- Layered System			- Support for load balances and proxies
+	- Resource-based			- Focus on nouns, not verbs
+
+
+2. Resources and Endpoints
+	--- Use Plural Nouns ---
+	- correct:	/api/users, 	/api/posts
+	- wrong:	/api/getUsers, 	/api/createPost
+
+	--- Unique Identifiers ---
+	- correct:	/api/users/1, 	/api/posts/23	
+
+	--- Nested Relationships ---
+	- correct: 	/api/users/1/posts
+	- meaning:	- return all posts belonging to user #1
+
+
+3. PUT vs PATCH request
+	- PUT:		- update all the fields 
+	- PATCH:	- update some of the fields
+
+
+4. Consistent Naming Conventions
+	a. Use lowercase, snake_case or kebab-case for route name
+		- countryprice, country_price, country-price
+
+	b. Avoid verbs in URL
+		- wrong:	/api/getUsers
+		- correct: 	/api/users/{id}
+
+	c. Use plural nouns consistently
+		- wrong:	/api/user/1
+		- correct:	/api/users/1
+
+	d. Create clear, descriptive paths
+		- /api/users/{id}/posts
+		- /api/users/{id}/comments
+
+
+
+5. HTTP Status Code
+	--- Success ---
+	200	- success
+	201	- created
+
+	--- Client Errors ---
+	400 	- bad request
+	401	- invalid token
+	403	- access denied
+	404	- not found
+
+	--- Server Errors ---
+	5000	- unexpected server issues
+
+
+
+6. Request and Response Format
+
+a. JSON everywhere
+{
+ "data":{
+   "id": 	1,
+   "name":	"Mark",
+   "email":	"mark@example.com"
+ }
+}
+
+
+b. Error Responses
+{
+ "error": [
+   {
+     "field": 	"email",
+     "message": "Email is required" 
+   }
+ ]
+}
+
+
+c. Best Practices
+	- never return HTML or plain text
+	- include helpful error message
+	- use camelCase or snake_case consistently (pick only one)
+	- provide metadata for pagination
+
+
+7. Versioning Considerations
+a. Why Version?
+	- Versioning allows you to introduce breaking changes while keeping older clients functional.
+	- It's essential for maintaining backward compatibility as your API evolves.
+
+b. Implementation
+	- /api/v1/users
+	- /api/v2/users
+
+c. Strategy
+	- Support multiple version simultaneously during transition period
+	- Deprecate old versions gradually with clear communication to API consumers.
+
+
+
+8. Statelessness
+a. Self Contained Requests
+	- Each request must contain everything needed to process it, including authentication token, parameters, and headers
+	- The server shouldn't rely on previous requests
+
+b. No Server-Side Sessions
+	- Don't store user-specific state on the server between requests
+	- Use tokens (like JWT) that clients send with each request instead of server-side sessions
+
+c. Benefits
+	- Scalability		- Any server can handle any request
+	- Simplicity		- No session management overhead
+	- Caching		- Responses are easier to cache
+	- Reliability		- No session state to lose
+
+
+9. Pagination, Filtering and Sorting
+	a. Pagination
+		- Break large result sets into manageable chunks. 
+		- Always include pagination metadata in responses (total count, current page, total pages)
+		- /api/post?page=2&per_page=10
+
+	b. Sorting
+		- Allow clients to specify sort fields and direction. 
+		- Support multiple sort parameters for complex ordering needs.
+		- /api/posts?sort=created_at&order=desc
+
+	c. Filtering
+		- Enable precise data retrieval
+		- Use clear, consistent parameter names that match your resource attributes
+		- /api/posts?author_id=3&status=published
+
+	d. PRO TIP
+		- document all available query parameters clearly. 
+		- consistency in naming conventions across all resources makes your API intuitive and developer-friendly 
+
+
+10. Consistency and Standards
+	a. Maintain Predictable Patterns
+		- use consistent structures across all resources
+
+	b. Leverage Laravel Features
+		- use Resource Controllers and API Resources for standardized structure
+
+	c. Automatic RESTful Routes
+		- Larevel's apiResource creates all standard routes automatically
+
+
+11. Real World Example: Posts Resource
+
+	a. Laravel Artisan Command
+		- php artisan make:model PostController --api
+
+	b. Generates a controller with these 5 RESTful API
+		- /api/posts		- GET ALL		- index()
+		- /api/posts/{id}	- GET SINGLE		- show()
+		- /api/posts		- CREATE		- store()
+		- /api/posts/{id}	- UPDATE		- update()
+		- /api/posts/{id}	- DELETE		- destroy()
+
+
+
+

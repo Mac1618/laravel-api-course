@@ -1,0 +1,23 @@
+LARAVEL - setup
+
+1. Install PHP then Composer
+	- composer global require laravel/installer
+
+
+2. Laravel Installation & Setups
+
+a. Setups
+	- laravel new laravel-api-course-2026
+	- npm install and npm run build			- no need if building REST API
+	- composer run dev				- combined command inside 	-> composer.json -> scripts -> dev 
+
+
+b. composer run dev (4 scripts meaning)
+	- npx concurrently -c				- used to execute 4 scripts concurrently
+	- php artisan serve				- start the php server 
+	- php artisan queue:listen --tries=l		- background jobs
+	- php artisan pail --timeout-0			- out putting logs (not available in windows)
+	- npm run dev					- build assets files, javascript, css files etc...
+
+
+c. php artisan serve 					- we can use this if REST API only	
