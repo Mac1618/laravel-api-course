@@ -21,3 +21,9 @@ b. composer run dev (4 scripts meaning)
 
 
 c. php artisan serve 					- we can use this if REST API only	
+
+d. php artisan install:api		- installing api sanctum package
+
+e. composer install						- install all the dependencies in composer.json
+   php artisan generate
+   php artisan migrate
