@@ -2,6 +2,7 @@ PHP ARTISAN COMMANDS
 1. php artisan list                        - same as help
    php artisan make list                   - tip you find specific command
    php artisan make:seeder --help          - how to use make:seeder
+   php artisan route:list                  - show all available route lists
 
 2. php artisan route
         - route:list                        - show all api routes
@@ -46,3 +47,5 @@ REST API with Laravel
         - api.php                                                                           - file name that store routes
         - Route::get('/posts/, [PostController::class, 'show'])->name('posts.show');        - traditional way of routes
         - Route::apiResource('posts', PostController);                                      - short cut way to routes
+
+3. Versioning of Api Route and Controller

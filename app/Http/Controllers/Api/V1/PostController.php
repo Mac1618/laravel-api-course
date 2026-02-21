@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,7 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return 'index';
+        return 'index_v1';
     }
 
     /**
@@ -19,7 +20,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return 'store';
+        return 'store_v1';
     }
 
     /**
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        return 'show_'.$id;
+        //
     }
 
     /**
@@ -35,7 +36,7 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return 'update_'.$id;
+        //
     }
 
     /**
@@ -43,6 +44,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        return 'destroy_'.$id;
+        //
     }
 }
