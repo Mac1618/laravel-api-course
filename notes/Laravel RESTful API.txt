@@ -1,0 +1,48 @@
+PHP ARTISAN COMMANDS
+1. php artisan list                        - same as help
+   php artisan make list                   - tip you find specific command
+   php artisan make:seeder --help          - how to use make:seeder
+
+2. php artisan route
+        - route:list                        - show all api routes
+
+3. php artisan about                        - info about the laravel app/api
+
+4. php artisan tinker                       - can execute laravel code. Mainly used to interact with database
+  a. list 
+    - User::where('email', "test@example.com")->first()
+    - $users = new User();
+    - $users->all();
+    - $users->find(1);
+
+  b. create
+    - $user = new User();
+    - $user->name = "Mark";
+    - $user->email = "test@example.com";
+    - $user->password = bcrypt('12345678');
+
+  c. update
+    - $user = new User();
+    - $user->find(1);
+    - $user->name = "new name";
+
+  d. delete
+    - $user = new User();
+    - $user->find(1);
+    - $user->delete();
+
+
+REST API with Laravel
+1. header
+    - Accept = application/json             - I (the client) expect / can handle a JSON response     - Client → Server
+    - ContentType = application/json        - I am sending the request body in JSON format.          - Client → Server
+
+2. Routes and Controllers
+    a. Controller
+        - php artisan make:controller PostController          - create a controller file
+        - php artisan make:controller PostController --api    - create a controller file with template
+    
+    b. Routes
+        - api.php                                                                           - file name that store routes
+        - Route::get('/posts/, [PostController::class, 'show'])->name('posts.show');        - traditional way of routes
+        - Route::apiResource('posts', PostController);                                      - short cut way to routes

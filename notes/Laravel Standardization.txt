@@ -166,11 +166,11 @@ c. Benefits
 		- php artisan make:model PostController --api
 
 	b. Generates a controller with these 5 RESTful API
-		- /api/posts		- GET ALL		- index()
-		- /api/posts/{id}	- GET SINGLE		- show()
-		- /api/posts		- CREATE		- store()
-		- /api/posts/{id}	- UPDATE		- update()
-		- /api/posts/{id}	- DELETE		- destroy()
+		- /api/posts					- GET ALL				- index()
+		- /api/posts/{id}			- GET SINGLE		- show()
+		- /api/posts					- CREATE				- store()
+		- /api/posts/{id}			- UPDATE				- update()
+		- /api/posts/{id}			- DELETE				- destroy()
 
 
 
